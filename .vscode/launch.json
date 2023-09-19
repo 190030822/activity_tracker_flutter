@@ -1,0 +1,31 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "activity_tracker",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "activity_tracker (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "activity_tracker (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "Flutter Web Render: HTML",
+            "request": "launch",
+            "type": "dart",
+            "args": ["--web-renderer","html"]
+        },
+    ]
+}
