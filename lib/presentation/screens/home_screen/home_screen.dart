@@ -1,4 +1,5 @@
 import 'package:activity_tracker/core/constants/colors.dart';
+import 'package:activity_tracker/logic/bloc/authenticate_bloc/authenticate_bloc.dart';
 import 'package:activity_tracker/logic/bloc/person_bloc/person_bloc.dart';
 import 'package:activity_tracker/presentation/screens/home_screen/widgets/person_list_tile.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,44 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
+      drawer: Drawer(
+        backgroundColor: figmaLightestGrey,
+        child: Column(
+          children: [
+            DrawerHeader(
+              child: Column(
+                children: [
+                  const Text("Welcome"),
+                  BlocBuilder<AuthenticateBloc, AuthenticateState>(
+                    buildWhen: (previous, current) => current is AuthenticateSignUpState && current.isNew == false && current.status == SignUpState.registered,
+                    builder: (context, state) { 
+                      AuthenticateSignUpState authenticateSignUpState = state as AuthenticateSignUpState;
+                      return Text(authenticateSignUpState.user.email);
+                    }
+                  ),
+                ],
+              )
+            ),
+            BlocListener<AuthenticateBloc, AuthenticateState>(
+              listenWhen: (previous, current) => current is AuthenticateSignUpState,
+              listener:(context, state) {
+                if (state.runtimeType == AuthenticateSignUpState) {
+                  Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+
+                }
+              },
+              child: ListTile(
+                onTap: () {
+                  context.read<AuthenticateBloc>().add(AuthenticateLogoutEvent());
+                },
+                title: const Text("Logout"),
+                leading: const Icon(Icons.logout),
+              ),
+            ),
+          ]
+        ),
+      ),
+
       body: Container(
         padding: const EdgeInsets.all(10),
         child: BlocConsumer<PersonBloc, PersonState>(

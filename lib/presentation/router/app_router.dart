@@ -1,7 +1,8 @@
 import 'package:activity_tracker/data/models/person_model.dart';
 import 'package:activity_tracker/presentation/screens/activity_details/activity_details_screen.dart';
-import 'package:activity_tracker/presentation/screens/activity_details/add_activity_screen.dart';
 import 'package:activity_tracker/presentation/screens/home_screen/add_person_screen.dart';
+import 'package:activity_tracker/presentation/screens/login/login.dart';
+import 'package:activity_tracker/presentation/screens/login/signup.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/constants/strings.dart';
@@ -16,6 +17,14 @@ class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case home:
+        return MaterialPageRoute(
+          builder: (_) => const LoginScreen(),
+        );
+      case "/signUp": 
+        return MaterialPageRoute(
+          builder: (_) => const SignUpScreen(),
+        );
+      case "/home":
         return MaterialPageRoute(
           builder: (_) => const HomeScreen(
             title: Strings.homeScreenTitle,
