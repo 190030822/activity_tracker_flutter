@@ -27,7 +27,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           if (!currentFocus.hasPrimaryFocus) currentFocus.unfocus();
         },
         child: Container(
-          color: figmaLightestGrey,
           child: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.all(10),
@@ -44,15 +43,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       EmailTextField(_emailController),
                       PasswordTextField(_passwordController),
                       ElevatedButton.icon(
-                        style: ButtonStyle(backgroundColor:
-                            MaterialStateProperty.resolveWith<Color?>(
-                          (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed)) {
-                              return Colors.red;
-                            }
-                            return figmaDarkGrey;
-                          },
-                        )),
                         label: BlocConsumer<AuthenticateBloc, AuthenticateState>(
                           listenWhen: (previous, current) => current is AuthenticateSignUpState && current.isNew == true,
                           buildWhen: (previous, current) => current is AuthenticateSignUpState && current.isNew == true,
@@ -72,7 +62,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           builder: (context, state) {
                             AuthenticateSignUpState authenticateSignUpState = state as AuthenticateSignUpState;
                             switch(authenticateSignUpState.status) {
-                              case SignUpState.registering: return const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: figmaOrange,));
+                              case SignUpState.registering: return const SizedBox(height: 20, width: 20, child: CircularProgressIndicator());
                               default : return const Text("Sign Up");
                             } 
                           }, 
@@ -95,8 +85,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               onTap: () => Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false),
                               child: const Text("Sign in",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.w800,
-                                      color: figmaBlue)),
+                                      fontWeight: FontWeight.w800,)),
                             )
                           ])
                     ]),

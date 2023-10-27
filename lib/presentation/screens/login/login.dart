@@ -29,7 +29,6 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       child: Scaffold(
         body: Container(
-          color: figmaLightestGrey,
           child: SingleChildScrollView(
             child: Container(
               margin: const EdgeInsets.all(6),
@@ -41,30 +40,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       const Icon(
                         Icons.security_outlined,
-                        color: figmaBlack,
                         size: 150,
                       ),
                       const Text(
                         "Welcome Again",
                         style: TextStyle(
-                            color: figmaBlack,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
                       EmailTextField(_emailController),
                       PasswordTextField(_passwordController),
                       ElevatedButton.icon(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.resolveWith<Color?>(
-                            (Set<MaterialState> states) {
-                              if (states.contains(MaterialState.pressed)) {
-                                return Colors.red;
-                              }
-                              return figmaDarkGrey;
-                            },
-                          ),
-                        ),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             context.read<AuthenticateBloc>().add(
@@ -75,7 +61,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         icon: const Icon(
                           Icons.login,
-                          color: figmaOrange,
                         ),
                         label:
                             BlocConsumer<AuthenticateBloc, AuthenticateState>(
@@ -113,7 +98,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     height: 20,
                                     width: 20,
                                     child: CircularProgressIndicator(
-                                      color: figmaOrange,
                                     )
                                   );
                                 } else {
@@ -142,6 +126,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       return  SignInWithGoogle(authenticateSignUpState);
                                     }
                                   }
+                                  case SignUpState.wentback : {
+                                    return  SignInWithGoogle(authenticateSignUpState);
+                                  }
                                   default: return  SignInWithGoogle(authenticateSignUpState);
                                 }
                               } else {
@@ -163,8 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: const Text(
                               "Sign up",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w800,
-                                  color: figmaBlue),
+                                  fontWeight: FontWeight.w800,),
                             ),
                             onTap: () => Navigator.pushNamedAndRemoveUntil(
                                 context, "/signUp", (route) => false),
@@ -192,16 +178,19 @@ class SignInWithGoogle extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
+        width: MediaQuery.of(context).size.width/1.8,
         decoration: BoxDecoration(
-            border: Border.all(color: figmaLightestGrey)),
+          borderRadius: BorderRadius.circular(20)
+        ),
         padding: const EdgeInsets.all(10),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Image.asset('assets/images/google_icon.png',
                 width: 30, height: 30),
-            const Text("Contnue with Google"),
+            const Text("Continue with Google"),
           ],
-        ),
+        ),     
       ),
       onTap: () {
         if (state.status == SignUpState.registering) {
@@ -211,6 +200,6 @@ class SignInWithGoogle extends StatelessWidget {
             .read<AuthenticateBloc>()
             .add(AuthenticateSignInWithGoogleEvent());
       },
-                              );
+    );
   }
 }

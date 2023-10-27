@@ -13,7 +13,6 @@ class EmailTextField extends StatelessWidget {
     return TextFormField(
       controller: _emailController,
       decoration: InputDecoration(
-        fillColor: figmaWhite,
         filled: true,
         hintText:"Email",
         prefixIcon: const Icon(Icons.person),

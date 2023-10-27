@@ -42,6 +42,7 @@ dependencies:
   equatable: ^2.0.5
   firebase_auth: ^4.10.0
   google_sign_in: ^6.1.5
+  flex_color_scheme: any
 
 
 
