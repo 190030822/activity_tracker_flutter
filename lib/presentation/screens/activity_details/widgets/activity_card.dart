@@ -22,11 +22,11 @@ class ActivityCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Text("Day :   ", style: TextStyle(color: figmaBlue, fontSize: 18),),
-                Text("${activity.wakeUpTime.day}/${activity.wakeUpTime.month}", style: const TextStyle(color: figmaOrange, fontWeight: FontWeight.bold, fontSize: 20),)
+                const Text("Day :   "),
+                Text("${activity.wakeUpTime.day}/${activity.wakeUpTime.month}", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),)
               ],
             ),
-            const Divider(height: 20, thickness: 2, color: figmaBorderColor,),
+            const Divider(height: 20, thickness: 2),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -42,7 +42,6 @@ class ActivityCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: figmaGreen,
                   ),
                 ),
               ],
@@ -63,7 +62,6 @@ class ActivityCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: figmaGreen,
                   ),
                 ),
               ],
@@ -84,7 +82,7 @@ class ActivityCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: figmaGreen,
+
                   ),
                 ),
               ],
@@ -105,7 +103,6 @@ class ActivityCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: figmaGreen,
                   ),
                 ),
               ],

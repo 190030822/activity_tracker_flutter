@@ -48,6 +48,8 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     UserModel userModel = await  _authRepository.signInWithGoogle();
     if (!userModel.isEmpty) {
       emit(AuthenticateSignUpState(SignUpState.registered, userModel, false));
+    } else {
+      emit(AuthenticateSignUpState(SignUpState.wentback, userModel, false));
     }
   }
 

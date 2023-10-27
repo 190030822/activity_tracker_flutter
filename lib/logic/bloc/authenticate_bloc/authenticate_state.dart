@@ -4,7 +4,7 @@ part of 'authenticate_bloc.dart';
 sealed class AuthenticateState {}
 
 
-enum SignUpState {registering, registered, unregisterd, failed}
+enum SignUpState {registering, registered, unregisterd, failed, wentback}
 
 
 class AuthenticateSignUpState extends AuthenticateState {

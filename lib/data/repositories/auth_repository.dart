@@ -1,5 +1,6 @@
 import 'package:activity_tracker/data/models/new_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository {
@@ -26,7 +27,8 @@ class AuthRepository {
   }
 
   Future<UserModel> signInWithGoogle() async {
-    GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+     GoogleSignInAccount? googleSignInAccount;
+      googleSignInAccount = await _googleSignIn.signIn();
     if (googleSignInAccount == null) {
       return UserModel.empty;
     } else {

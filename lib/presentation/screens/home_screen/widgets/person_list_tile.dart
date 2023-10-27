@@ -11,12 +11,11 @@ class PersonListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        leading: ClipOval(
-          child: Container(
+        leading: const ClipOval(
+          child: SizedBox(
             height: 40,
             width: 40,
-            color: figmaLightestGrey,
-            child: const Icon(Icons.account_circle, color: Colors.amber,),
+            child: const Icon(Icons.account_circle),
           ),
         ),
         title: Text(person.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),

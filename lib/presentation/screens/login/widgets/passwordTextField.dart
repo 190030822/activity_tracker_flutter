@@ -12,7 +12,6 @@ class PasswordTextField extends StatelessWidget {
     return TextFormField(
       controller: _passwordController,
       decoration: InputDecoration(
-        fillColor: figmaWhite,
         filled: true,
         hintText: "Password",
         prefixIcon: const Icon(Icons.password),

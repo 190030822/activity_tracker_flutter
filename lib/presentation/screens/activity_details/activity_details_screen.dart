@@ -33,8 +33,8 @@ class _PersonActivityDetailsState extends State<PersonActivityDetails> {
             builder: (context, state) {
               switch(state.runtimeType) {
                 case ActivityLoadingState: return const SizedBox();
-                default: return ElevatedButton.icon(
-                  onPressed: () {
+                default: return InkWell(
+                  onTap: () {
                     if (context.read<ActivityBloc>().isActivityAdded()) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Activity Already Added Today")));
                     } else {
@@ -44,8 +44,10 @@ class _PersonActivityDetailsState extends State<PersonActivityDetails> {
                       );
                     }
                   }, 
-                  icon: const Icon(Icons.add_box_outlined),
-                  label: const Text("Add Activity"),
+                  child: const Chip(
+                    label: Text("Add Activity"),
+                    avatar: Icon(Icons.add_box_outlined),
+                    ),
                 );
               }
             }
@@ -56,22 +58,9 @@ class _PersonActivityDetailsState extends State<PersonActivityDetails> {
         children: [
           Expanded(
             flex: 5,
-            child: Container(
-              padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 240, 240, 230),
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(16.0),
-                  bottomRight: Radius.circular(16.0),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
